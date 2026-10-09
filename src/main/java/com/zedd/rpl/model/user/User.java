@@ -1,6 +1,7 @@
 package com.zedd.rpl.model.user;
 
 import com.zedd.rpl.enums.Role;
+import com.zedd.rpl.model.student.Student;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jspecify.annotations.Nullable;
@@ -15,6 +16,7 @@ import org.springframework.util.ObjectUtils;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -35,6 +37,10 @@ public class User implements UserDetails {
 
   @Column(nullable = false)
   private String password;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "student_id", unique = true)
+  private Student student;
 
   @CreatedDate
   @Column(name = "created_date", updatable = false, nullable = false)
@@ -68,8 +74,7 @@ public class User implements UserDetails {
   }
 
   @Override
-  public boolean isAccountNonExpired() {
-    return true;
+  public boolean isEnabled() {
+    return Objects.isNull(student) || student.isActive();
   }
-
 }

@@ -1,3 +1,28 @@
 spring:
-  application:
-    name: project-RPL
+  datasource:
+    url: jdbc:mysql://localhost:3306/rpl?useSSL=false&serverTimezone=Asia/Jakarta
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+rpl:
+  timezone: Asia/Jakarta
+  opening-time: '08:00'
+  closing-time: '21:00'
+  check-in-tolerance-minutes: 10
+  max-active-bookings: 2
+  max-hours-per-day: 3
+  free-cancellation-hours: 2
+  score:
+    min-to-book: 60
+    no-show: 15
+    late-cancellation: 5
+    completed-on-time: 5
+  schedule:
+    auto-cancel-ms: 300000
+    complete-ms: 300000
+    open-date-cron: 0 0 20 * * *
+  bootstrap:
+    admin-username: admin
+    admin-password: ${ADMIN_PASSWORD:}
