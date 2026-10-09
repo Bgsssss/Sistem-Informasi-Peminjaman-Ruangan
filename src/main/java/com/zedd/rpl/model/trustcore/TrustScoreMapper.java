@@ -3,6 +3,7 @@ package com.zedd.rpl.model.trustcore;
 
 import com.zedd.rpl.model.trustcore.res.ScoreHistoryResponse;
 import com.zedd.rpl.model.trustcore.res.ViolationLogResponse;
+import com.zedd.rpl.model.trustcore.res.ViolationLogRow;
 import org.springframework.stereotype.Component;
 
 @Component

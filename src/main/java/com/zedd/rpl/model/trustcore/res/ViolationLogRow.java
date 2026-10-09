@@ -1,4 +1,4 @@
-package com.zedd.rpl.model.trustcore;
+package com.zedd.rpl.model.trustcore.res;
 
 import java.time.LocalDateTime;
 
