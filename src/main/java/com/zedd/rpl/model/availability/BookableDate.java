@@ -1,4 +1,4 @@
-package com.zedd.rpl.model.booking;
+package com.zedd.rpl.model.availability;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

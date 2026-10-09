@@ -24,8 +24,10 @@ import java.time.LocalTime;
 @SuperBuilder
 
 public class Booking extends BaseEntity {
-  /** Check-in tolerance in minutes before auto-cancellation. */
-  public static final int CHECKIN_TOLERANCE_MINUTES = 10;
+  /**
+   * Check-in tolerance in minutes before auto-cancellation.
+   *//*
+  public static final int CHECKIN_TOLERANCE_MINUTES = 10;*/
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "student_id", nullable = false)
@@ -35,14 +37,14 @@ public class Booking extends BaseEntity {
   @JoinColumn(name = "room_id", nullable = false)
   private Room room;
 
-  @Column(nullable = false)
-  private LocalDate date;
+  @Column(name = "booking_date", nullable = false)
+  private LocalDate bookingDate;
 
-  @Column(name = "start_slot", nullable = false)
-  private LocalTime startSlot;
+  @Column(name = "slot_start", nullable = false)
+  private LocalTime startTime;
 
-  @Column(name = "end_slot", nullable = false)
-  private LocalTime endSlot;
+  @Column(name = "slot_end", nullable = false)
+  private LocalTime endTime;
 
   @Builder.Default
   @Enumerated(EnumType.STRING)
@@ -50,47 +52,47 @@ public class Booking extends BaseEntity {
   private BookingStatus status = BookingStatus.ACTIVE;
 
   @Column(name = "checkin_time")
-  private LocalDateTime checkinTime;
+  private LocalDateTime checkedInAt;
 
   @Column(name = "cancelled_at")
   private LocalDateTime cancelledAt;
 
-  @Column(name = "cancellation_reason", length = 255)
-  private String cancellationReason;
+  @Column(name = "cancel_reason")
+  private String cancelReason;
 
-  /** Admin (user with admin role) who cancelled the booking. Null if not cancelled by an admin. */
+  /**
+   * Admin (user with admin role) who canceled the booking. Null if not canceled by an admin.
+   */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "cancelled_by_admin_id")
-  private User cancelledBy;
+  private User cancelledByAdmin;
 
-  // Generated column 'used_slot' is intentionally unmapped. Handled by database.
 
-  /** Slots are always 1 hour long, so endSlot is computed from startSlot. */
-  public static Booking create(Student student, Room room, LocalDate date, LocalTime startSlot) {
+  // The generated column slot_taken is intentionally not mapped. The database fills it.
+
+  /**
+   * A slot is always 1 hour, so endTime is derived from startTime.
+   */
+  public static Booking create(Student student, Room room, LocalDate date, LocalTime startTime) {
     return Booking.builder()
         .student(student)
         .room(room)
-        .date(date)
-        .startSlot(startSlot)
-        .endSlot(startSlot.plusHours(1))
+        .bookingDate(date)
+        .startTime(startTime)
+        .endTime(startTime.plusHours(1))
         .build();
   }
 
-  public LocalDateTime startAt() {
-    return LocalDateTime.of(date, startSlot);
+  public LocalDateTime startDateTime() {
+    return LocalDateTime.of(bookingDate, startTime);
   }
 
-  public LocalDateTime endAt()   {
-    return LocalDateTime.of(date, endSlot);
-  }
-
-  /** Check-in deadline: start time plus tolerance. */
-  public LocalDateTime checkinDeadline() {
-    return startAt().plusMinutes(CHECKIN_TOLERANCE_MINUTES);
+  public LocalDateTime endDateTime() {
+    return LocalDateTime.of(bookingDate, endTime);
   }
 
   public void checkIn(LocalDateTime now) {
-    this.checkinTime = now;
+    this.checkedInAt = now;
     this.status = BookingStatus.ATTENDED;
   }
 
@@ -99,19 +101,19 @@ public class Booking extends BaseEntity {
     this.cancelledAt = now;
   }
 
-  public void cancelBySystem(LocalDateTime now) {
+  public void cancelBySystem(LocalDateTime now, int toleranceMinutes) {
     this.status = BookingStatus.CANCELLED_BY_SYSTEM;
     this.cancelledAt = now;
-    this.cancellationReason = "Did not check in within " + CHECKIN_TOLERANCE_MINUTES + " minutes";
+    this.cancelReason = "No check-in within " + toleranceMinutes + " minutes";
   }
 
   public void cancelByAdmin(User admin, String reason, LocalDateTime now) {
     if (reason == null || reason.isBlank()) {
-      throw new IllegalArgumentException("Admin cancellation reason is required");
+      throw new IllegalArgumentException("A reason is required for an admin cancellation");
     }
     this.status = BookingStatus.CANCELLED_BY_ADMIN;
     this.cancelledAt = now;
-    this.cancellationReason = reason;
-    this.cancelledBy = admin;
+    this.cancelReason = reason;
+    this.cancelledByAdmin = admin;
   }
 }
