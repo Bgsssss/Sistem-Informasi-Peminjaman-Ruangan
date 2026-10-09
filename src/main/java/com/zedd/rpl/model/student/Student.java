@@ -20,10 +20,10 @@ public class Student extends BaseEntity {
 
   public static final int INITIAL_SCORE = 100;
   public static final int MAX_SCORE = 100;
-  public static final int BOOKING_SCORE_THRESHOLD = 60;
+  //public static final int BOOKING_SCORE_THRESHOLD = 60;
 
-  @Column(nullable = false, unique = true, length = 20)
-  private String npm;
+  @Column(name = "npm",nullable = false, unique = true, length = 20)
+  private String studentNumber;
 
   @Column(nullable = false, length = 100)
   private String name;
@@ -49,8 +49,8 @@ public class Student extends BaseEntity {
   }
 
   /** Scores of 60 and above are allowed to book (FR-24). */
-  public boolean canBook() {
+  /*public boolean canBook() {
     return isActive && trustScore >= BOOKING_SCORE_THRESHOLD;
-  }
+  }*/
 
 }

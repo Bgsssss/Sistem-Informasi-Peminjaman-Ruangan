@@ -1,4 +1,4 @@
-package com.zedd.rpl.model.user.res;
+package com.zedd.rpl.model.student.res;
 
 import com.zedd.rpl.model.trustcore.res.ScoreHistoryResponse;
 
