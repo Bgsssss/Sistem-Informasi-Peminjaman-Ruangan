@@ -1,5 +1,7 @@
 package com.zedd.rpl.model.booking;
 
+import com.zedd.rpl.model.booking.res.AdminBookingResponse;
+import com.zedd.rpl.model.booking.res.BookingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

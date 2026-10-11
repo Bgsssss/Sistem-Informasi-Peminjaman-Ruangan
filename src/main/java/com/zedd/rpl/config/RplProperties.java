@@ -38,7 +38,7 @@ public class RplProperties {
   @Getter
   @Setter
   public static class Bootstrap {
-    private String adminUsername = "admin";
+    private String adminUsername = "admin@gmail.com";
     /** No default on purpose. The admin account is only created when a password is provided. */
     private String adminPassword;
   }

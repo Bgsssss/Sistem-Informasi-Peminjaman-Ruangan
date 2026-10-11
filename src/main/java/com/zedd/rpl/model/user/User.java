@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,12 +42,8 @@ public class User implements UserDetails {
   private Student student;
 
   @CreatedDate
-  @Column(name = "created_date", updatable = false, nullable = false)
-  private LocalDateTime createdDate;
-
-  @LastModifiedDate
-  @Column(name = "last_modified_date", insertable = false)
-  private LocalDateTime lastModifiedDate;
+  @Column(name = "created_at", updatable = false, nullable = false)
+  private LocalDateTime createdAt;
 
   @Enumerated(value = EnumType.STRING)
   @Column(nullable = false)

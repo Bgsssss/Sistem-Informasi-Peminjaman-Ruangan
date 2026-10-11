@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 public class BookableDate {
 
   @Id
-  private LocalDate date;
+  @Column(name = "booking_date")
+  private LocalDate bookingDate;
 
   @Column(name = "is_open", nullable = false)
   private boolean isOpen;
@@ -22,12 +23,12 @@ public class BookableDate {
   @Column(name = "opened_at")
   private LocalDateTime openedAt;
 
-  public BookableDate(LocalDate date) {
-    this.date = date;
+  public BookableDate(LocalDate bookingDate) {
+    this.bookingDate = bookingDate;
   }
 
-  public void open() {
+  public void markOpen(LocalDateTime now) {
     this.isOpen = true;
-    this.openedAt = LocalDateTime.now();
+    this.openedAt = now;
   }
 }

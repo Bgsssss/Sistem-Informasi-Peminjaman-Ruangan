@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 /** Tidak extend BaseEntity: log append-only, pelakunya sudah tercatat di kolom admin. */
 @Entity
-@Table(name = "audit_log")
+@Table(name = "audit_logs")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AuditLog {

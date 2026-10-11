@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
   // ---------- student ----------
@@ -70,7 +72,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
   // ---------- availability ----------
 
   @Query("""
-      select new Zedd.siperdis.models.booking.SlotUsage(b.room.id, b.startTime)
+      select new com.zedd.rpl.model.booking.internal.SlotUsage(b.room.id, b.startTime)
       from Booking b
       where b.bookingDate = :date and b.status in :statuses
         and (:type is null or b.room.type = :type)
@@ -81,15 +83,15 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
   // ---------- scheduled jobs ----------
 
+
   @Query("""
-      select new Zedd.siperdis.models.booking.CandidateBooking(
+      select new com.zedd.rpl.model.booking.internal.CandidateBooking(
              b.id, b.student.id, b.bookingDate, b.startTime, b.endTime)
       from Booking b
       where b.status = :status and b.bookingDate <= :untilDate
       """)
   List<CandidateBooking> findCandidates(@Param("status") BookingStatus status,
                                         @Param("untilDate") LocalDate untilDate);
-
   // ---------- admin ----------
 
   @EntityGraph(attributePaths = {"student", "room", "cancelledByAdmin"})

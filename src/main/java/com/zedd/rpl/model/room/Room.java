@@ -26,7 +26,7 @@ public class Room extends BaseEntity {
   private RoomType type;
 
   @Column(nullable = false, length = 150)
-  private String lokasi;
+  private String location;
 
   @Setter(AccessLevel.NONE)
   @JdbcTypeCode(SqlTypes.TINYINT)
@@ -43,7 +43,7 @@ public class Room extends BaseEntity {
   @Column(name = "is_active", nullable = false)
   private boolean isActive = true;
 
-  public void setTypeAndCapacity(RoomType type, int kapasitas) {
+  public void setTypeAndCapacity(RoomType type, int capacity) {
     this.type = type;
     this.capacity = capacity;
     //validateCapacity();
