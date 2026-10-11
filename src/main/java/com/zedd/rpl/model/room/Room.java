@@ -43,19 +43,19 @@ public class Room extends BaseEntity {
   @Column(name = "is_active", nullable = false)
   private boolean isActive = true;
 
-  public void setTypeAndCapacity(RoomType type, int capacity) {
+  public void changeTypeAndCapacity(RoomType type, int capacity) {
     this.type = type;
     this.capacity = capacity;
-    //validateCapacity();
+    validateCapacity();
   }
 
   /** Jaring pengaman untuk objek yang dibuat lewat builder. Database punya CHECK yang sama. */
-  /*@PrePersist
+  @PrePersist
   @PreUpdate
   void validateCapacity() {
-    if (type == null || capacity == null || !type.isValidCapacity(capacity)) {
+    if (type == null || capacity == null || !type.isCapacityValid(capacity)) {
       throw new IllegalStateException(
           "Capacity " + capacity + " is outside the valid range for type " + type);
     }
-  }*/
+  }
 }
