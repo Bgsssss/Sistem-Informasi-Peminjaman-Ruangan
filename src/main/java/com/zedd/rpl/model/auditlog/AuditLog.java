@@ -28,11 +28,11 @@ public class AuditLog {
   private String action;
 
   /** Contoh: booking, ruangan. */
-  @Column(nullable = false, length = 50)
-  private String entity;
+  @Column(name ="entity",nullable = false, length = 50)
+  private String targetType;
 
   @Column(name = "entity_id", nullable = false)
-  private Long entityId;
+  private Long targetId;
 
   @Column
   private String reason;
@@ -40,11 +40,11 @@ public class AuditLog {
   @Column(name = "created_at", insertable = false, updatable = false)
   private LocalDateTime createdAt;
 
-  public AuditLog(User admin, String action, String entity, Long entityId, String reason) {
+  public AuditLog(User admin, String action, String targetType, Long targetId, String reason) {
     this.admin = admin;
     this.action = action;
-    this.entity = entity;
-    this.entityId = entityId;
+    this.targetType = targetType;
+    this.targetId = targetId;
     this.reason = reason;
   }
 }
