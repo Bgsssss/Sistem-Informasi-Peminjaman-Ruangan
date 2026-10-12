@@ -30,7 +30,7 @@ public class BeansConfig {
         return new ApplicationAuditorAware();
     }
 
-    @Bean
+    /*@Bean
     public UserDetailsService userDetailsService(
         UserRepository userRepository) {
 
@@ -38,5 +38,5 @@ public class BeansConfig {
             .orElseThrow(() -> new UsernameNotFoundException(
                 "User tidak ditemukan: " + username
             ));
-    }
+    }*/
 }

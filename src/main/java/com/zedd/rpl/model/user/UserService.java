@@ -7,12 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService extends UserDetailsService {
-
   void changePassword(ChangePasswordRequest request, Long userId);
 
-  void deactivateAccount(Long userId);
-
-  void reactivateAccount(Long userId);
-
-  void deleteAccount(Long userId);
 }
