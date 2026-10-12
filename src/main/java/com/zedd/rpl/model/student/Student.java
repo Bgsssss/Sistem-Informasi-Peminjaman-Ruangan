@@ -43,7 +43,7 @@ public class Student extends BaseEntity {
   private Integer trustScore = INITIAL_SCORE;
 
 
-  public int updateScore(int delta) {
+  public int changeScore(int delta) {
     this.trustScore = Math.max(0, Math.min(MAX_SCORE, this.trustScore + delta));
     return this.trustScore;
   }
