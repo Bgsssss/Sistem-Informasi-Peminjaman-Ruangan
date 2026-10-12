@@ -44,7 +44,10 @@ public class StudentAdminService {
   @Transactional(readOnly = true)
   public PageResponse<StudentResponse> list(int page, int size) {
     Page<Student> result = studentRepository.findAll(
-        PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 100), Sort.by("studentNumber")));
+        PageRequest.of(Math.max(page, 0),
+            Math.min(Math.max(size, 1), 100),
+            Sort.by("studentNumber")));
+
     List<Long> ids = result.getContent().stream().map(Student::getId).toList();
     Map<Long, String> emailByStudent = userRepository.findByStudentIdIn(ids).stream()
         .collect(Collectors.toMap(u -> u.getStudent().getId(), User::getUsername));
