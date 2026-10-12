@@ -1,4 +1,4 @@
-package com.zedd.rpl.model.student.Impl;
+package com.zedd.rpl.model.student.impl;
 
 
 import com.zedd.rpl.common.PageResponse;

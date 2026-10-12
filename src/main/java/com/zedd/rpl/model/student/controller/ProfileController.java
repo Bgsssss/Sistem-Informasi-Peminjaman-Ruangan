@@ -2,7 +2,7 @@ package com.zedd.rpl.model.student.controller;
 
 
 import com.zedd.rpl.common.ApiResponse;
-import com.zedd.rpl.model.student.Impl.ProfileService;
+import com.zedd.rpl.model.student.impl.ProfileService;
 import com.zedd.rpl.model.student.res.ProfileResponse;
 import com.zedd.rpl.model.user.User;
 import lombok.RequiredArgsConstructor;

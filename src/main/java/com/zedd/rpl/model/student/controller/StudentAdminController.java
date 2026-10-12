@@ -2,7 +2,7 @@ package com.zedd.rpl.model.student.controller;
 
 import com.zedd.rpl.common.ApiResponse;
 import com.zedd.rpl.common.PageResponse;
-import com.zedd.rpl.model.student.Impl.StudentAdminService;
+import com.zedd.rpl.model.student.impl.StudentAdminService;
 import com.zedd.rpl.model.student.req.ResetPasswordRequest;
 import com.zedd.rpl.model.student.req.StudentRequest;
 import com.zedd.rpl.model.student.res.StudentResponse;
