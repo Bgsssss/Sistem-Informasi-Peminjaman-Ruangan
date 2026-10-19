@@ -1,5 +1,7 @@
-package com.zedd.rpl.model.availability;
+package com.zedd.rpl.model.availability.impl;
 
+import com.zedd.rpl.model.availability.BookableDate;
+import com.zedd.rpl.model.availability.BookableDateRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/profile")
-@PreAuthorize("hasRole('STUDENT')")
+@PreAuthorize("hasRole('ROLE_STUDENT')")
 @RequiredArgsConstructor
 public class ProfileController {
 
