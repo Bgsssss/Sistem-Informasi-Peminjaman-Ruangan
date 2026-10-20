@@ -41,7 +41,7 @@ public class Room extends BaseEntity {
 
   @Builder.Default
   @Column(name = "is_active", nullable = false)
-  private boolean isActive = true;
+  private boolean active = true;
 
   public void changeTypeAndCapacity(RoomType type, int capacity) {
     this.type = type;

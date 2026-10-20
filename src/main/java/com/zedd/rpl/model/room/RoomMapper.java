@@ -26,7 +26,7 @@ public class RoomMapper {
         .capacity(req.capacity())
         .facilities(joinFacilities(req.facilities()))
         .photo(req.photo())
-        .isActive(req.active() == null || req.active())
+        .active(req.active() == null || req.active())
         .build();
   }
 

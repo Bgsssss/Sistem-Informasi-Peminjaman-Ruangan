@@ -2,6 +2,10 @@ package com.zedd.rpl.exception;
 
 import lombok.Getter;
 
+/**
+ * Arguments are format arguments for the error code's default message (String.format),
+ * not a replacement message. Put "%s" placeholders in ErrorCode and pass only the values.
+ */
 @Getter
 public class BusinessException extends RuntimeException {
     private final ErrorCode errorCode;

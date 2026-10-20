@@ -16,13 +16,13 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
   List<Room> findByActiveTrueOrderByName();
 
-  @Query("""
+  /*@Query("""
     SELECT r
     FROM Room r
     WHERE r.type = :type
-      AND r.isActive = TRUE
+      AND r.active = TRUE
     ORDER BY r.name ASC
-    """)
+    """)*/
   List<Room> findByTypeAndActiveTrueOrderByName(@Param("type")RoomType type);
 
   boolean existsByName(String name);
