@@ -99,7 +99,7 @@ function cancel(b) {
   const late = API.isLateCancel(b);
   const msg = 'Batalkan booking ' + b.room + ' pada ' + formatDate(b.date) + ', ' + b.start + '-' + b.end + '?' +
     (late ? '\n\nKurang dari ' + CONFIG.lateCancelHours + ' jam sebelum jadwal: trust score kamu berkurang ' + Math.abs(CONFIG.penalty.lateCancel) + ' poin.' : '');
-  if (!confirm(msg)) return;
+  if (!(await Dialog.confirm({ title: 'Batalkan booking?', message: msg, confirmText: 'Ya, batalkan', cancelText: 'Kembali', danger: true }))) return;
   API.cancelBooking(b.id)
     .then(res => {
       load();

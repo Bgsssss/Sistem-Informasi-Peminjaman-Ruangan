@@ -159,7 +159,7 @@ function save(e) {
 }
 
 // ---- Aktif/nonaktif dan hapus ----
-function toggle(room) {
+async function toggle(room) {
   if (!room.active) {
     API.setRoomActive(room.id, true).then(() => {
       say(room.name + ' diaktifkan kembali dan muncul di pencarian ketersediaan.', 'ok');
@@ -171,7 +171,7 @@ function toggle(room) {
   const msg = room.activeBookings > 0
     ? room.name + ' punya ' + room.activeBookings + ' booking aktif. Booking itu TIDAK dibatalkan otomatis; tindak lanjuti manual lewat Kelola Booking.\n\nNonaktifkan ruangan?'
     : 'Nonaktifkan ' + room.name + '? Ruangan tidak akan muncul di pencarian ketersediaan.';
-  if (!confirm(msg)) return;
+  if (!(await Dialog.confirm({ title: 'Nonaktifkan ruangan?', message: msg, confirmText: 'Nonaktifkan', danger: true }))) return;
 
   API.setRoomActive(room.id, false).then(res => {
     say(room.name + ' dinonaktifkan.' + (res.affected ? ' ' + res.affected + ' booking aktif perlu ditindaklanjuti lewat Kelola Booking.' : ''), 'ok');
@@ -179,8 +179,8 @@ function toggle(room) {
   });
 }
 
-function remove(room) {
-  if (!confirm('Hapus ' + room.name + ' secara permanen? Tindakan ini tidak bisa dibatalkan.')) return;
+async function remove(room) {
+  if (!(await Dialog.confirm({ title: 'Hapus ruangan?', message: 'Hapus ' + room.name + ' secara permanen? Tindakan ini tidak bisa dibatalkan.', confirmText: 'Hapus', danger: true }))) return;
   API.deleteRoom(room.id)
     .then(() => { say(room.name + ' dihapus.', 'ok'); return load(); })
     .catch(err => say(err.message, 'err'));
