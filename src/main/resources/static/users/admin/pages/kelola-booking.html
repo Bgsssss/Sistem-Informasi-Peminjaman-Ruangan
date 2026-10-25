@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kelola booking | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Kelola booking</h1>
+        <p class="sub">Semua booking dari semua mahasiswa. Data tersedia untuk 30 hari terakhir sampai besok.</p>
+
+        <section class="card" id="cancelCard" hidden aria-labelledby="cancelTitle">
+          <h2 id="cancelTitle">Batalkan booking</h2>
+          <div class="target" id="target"></div>
+          <p class="warn" id="startedWarn" hidden>Booking ini sedang berlangsung. Mahasiswa akan kehilangan sisa waktu pemakaiannya.</p>
+          <form id="cancelForm" novalidate>
+            <label class="ctl">Alasan pembatalan
+              <textarea id="reason" required></textarea>
+              <small class="hint">Wajib diisi. Alasan tersimpan di log audit bersama identitas admin dan waktu pembatalan. Pembatalan oleh admin tidak mengurangi trust score mahasiswa.</small>
+            </label>
+            <p class="notice" id="formNotice" role="alert"></p>
+            <div class="actions">
+              <button type="submit" class="btn danger">Batalkan booking</button>
+              <button type="button" class="btn alt" id="closeBtn">Tutup</button>
+            </div>
+          </form>
+        </section>
+
+        <div class="filters stack-top">
+          <label class="ctl">Tanggal
+            <input type="date" id="fDate">
+          </label>
+          <label class="ctl">Ruangan
+            <select id="fRoom"><option value="">Semua ruangan</option></select>
+          </label>
+          <label class="ctl">Status
+            <select id="fStatus">
+              <option value="">Semua status</option>
+              <option value="aktif">Aktif</option>
+              <option value="selesai">Selesai</option>
+              <option value="dibatalkan">Dibatalkan</option>
+            </select>
+          </label>
+          <button type="button" class="btn alt" id="resetBtn">Reset filter</button>
+        </div>
+
+        <section class="card">
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr><th>Tanggal</th><th>Jam</th><th>Ruangan</th><th>Mahasiswa</th><th>Status</th><th>Keterangan</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <p class="muted" id="count"></p>
+          <p class="notice" id="notice" role="status"></p>
+        </section>
+
+        <section class="card stack-top" aria-labelledby="auditTitle">
+          <h2 id="auditTitle">Log pembatalan oleh admin</h2>
+          <ul class="list" id="audit"></ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api-client.js"></script>
+  <script src="../../js/auth-service.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/layout.js"></script>
+  <script src="../../js/kelola-booking.js"></script>
+</body>
+</html>

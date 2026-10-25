@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log pelanggaran | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Log pelanggaran</h1>
+        <p class="sub">Riwayat no-show dan pembatalan mendadak 30 hari terakhir, beserta trust score terkini mahasiswa.</p>
+
+        <div class="stats">
+          <div class="stat"><span>Mahasiswa dengan pelanggaran</span><strong id="sMhs">0</strong></div>
+          <div class="stat"><span>Tidak bisa booking (skor di bawah batas)</span><strong id="sKunci">0</strong></div>
+          <div class="stat"><span>Total no-show</span><strong id="sNoShow">0</strong></div>
+          <div class="stat"><span>Total batal mendadak</span><strong id="sBatal">0</strong></div>
+        </div>
+
+        <section class="card" id="detailCard" hidden aria-labelledby="detailTitle">
+          <h2 id="detailTitle">Detail mahasiswa</h2>
+          <p class="muted" id="detailMeta"></p>
+
+          <h2 class="section-gap">Riwayat trust score</h2>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Waktu</th><th>Keterangan</th><th>Perubahan</th><th>Skor akhir</th></tr></thead>
+              <tbody id="histRows"></tbody>
+            </table>
+          </div>
+
+          <h2 class="section-gap">Pelanggaran</h2>
+          <ul class="list" id="vioList"></ul>
+
+          <h2 class="section-gap">Penyesuaian skor manual</h2>
+          <form id="adjustForm" novalidate>
+            <div class="inline-form">
+              <label class="ctl">Poin
+                <input type="number" id="fDelta" step="1" min="-100" max="100" required>
+                <small class="hint">Positif menambah, negatif mengurangi.</small>
+              </label>
+              <label class="ctl">Alasan
+                <textarea id="fReason" required></textarea>
+                <small class="hint">Wajib diisi dan tercatat di riwayat skor. Skor tetap dibatasi 0 sampai 100.</small>
+              </label>
+            </div>
+            <p class="notice" id="formNotice" role="alert"></p>
+            <div class="actions">
+              <button type="submit" class="btn">Simpan penyesuaian</button>
+              <button type="button" class="btn alt" id="closeBtn">Tutup</button>
+            </div>
+          </form>
+        </section>
+
+        <div class="toolbar stack-top">
+          <div class="tabs" id="tabs">
+            <button type="button" class="tab" data-f="pelanggaran" aria-pressed="true">Ada pelanggaran</button>
+            <button type="button" class="tab" data-f="terkunci" aria-pressed="false">Skor di bawah batas</button>
+            <button type="button" class="tab" data-f="semua" aria-pressed="false">Semua mahasiswa</button>
+          </div>
+          <label class="ctl sort">
+            <select id="sort" aria-label="Urutkan">
+              <option value="skor">Urutkan: skor terendah</option>
+              <option value="pelanggaran">Urutkan: pelanggaran terbanyak</option>
+            </select>
+          </label>
+        </div>
+
+        <section class="card">
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr><th>Mahasiswa</th><th>Fakultas</th><th>Trust score</th><th>No-show</th><th>Batal mendadak</th><th>Terakhir</th><th>Hak booking</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <p class="notice" id="notice" role="status"></p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api-client.js"></script>
+  <script src="../../js/auth-service.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/layout.js"></script>
+  <script src="../../js/log-pelanggaran.js"></script>
+</body>
+</html>

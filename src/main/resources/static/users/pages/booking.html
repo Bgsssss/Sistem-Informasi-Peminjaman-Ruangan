@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking ruangan | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Booking ruangan</h1>
+        <p class="sub">Pilih tipe, tanggal, dan waktu. Booking hanya untuk hari ini dan besok. Ruangan hijau bisa dipesan.</p>
+
+        <div class="banner" id="banner" hidden></div>
+
+        <div class="controls">
+          <label class="ctl">Tipe ruangan
+            <select id="type"></select>
+          </label>
+          <label class="ctl">Tanggal
+            <select id="date"></select>
+          </label>
+          <label class="ctl">Slot waktu
+            <select id="slot"></select>
+          </label>
+        </div>
+
+        <div class="split">
+          <section class="card" aria-labelledby="roomsTitle">
+            <h2 id="roomsTitle">Daftar ruangan</h2>
+            <div class="rooms" id="rooms"></div>
+            <ul class="legend">
+              <li><span class="dot ok"></span>Tersedia</li>
+              <li><span class="dot booked"></span>Dibooking</li>
+              <li><span class="dot busy"></span>Sedang dipakai</li>
+            </ul>
+          </section>
+
+          <aside class="card" aria-labelledby="sumTitle">
+            <h2 id="sumTitle">Ringkasan</h2>
+            <div id="summary"></div>
+            <button type="button" class="btn" id="bookBtn" disabled>Ajukan booking</button>
+            <p class="notice" id="notice" role="status"></p>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api-client.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/booking.js"></script>
+</body>
+</html>

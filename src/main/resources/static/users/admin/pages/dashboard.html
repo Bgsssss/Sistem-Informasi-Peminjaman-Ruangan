@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard admin | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Dashboard admin</h1>
+        <p class="sub" id="dateLabel">Ringkasan booking hari ini.</p>
+
+        <nav class="shortcuts" aria-label="Pintasan menu admin">
+          <a class="shortcut" href="kelola-ruangan.html">Kelola ruangan<small>Tambah, ubah, hapus, aktif/nonaktif</small></a>
+          <a class="shortcut" href="kelola-mahasiswa.html">Kelola data mahasiswa<small>Akun, status, reset password</small></a>
+          <a class="shortcut" href="kelola-booking.html">Kelola booking<small>Filter dan pembatalan manual</small></a>
+          <a class="shortcut" href="log-pelanggaran.html">Log pelanggaran<small>No-show dan penyesuaian skor</small></a>
+          <a class="shortcut" href="laporan.html">Laporan penggunaan<small>Total booking, batal, no-show per ruangan</small></a>
+          <a class="shortcut" href="pengaturan.html">Pengaturan sistem<small>Parameter sistem (hanya baca)</small></a>
+        </nav>
+
+        <div class="stats">
+          <div class="stat"><span>Total booking hari ini</span><strong id="sTotal">0</strong></div>
+          <div class="stat"><span>Aktif</span><strong id="sAktif">0</strong></div>
+          <div class="stat"><span>Selesai</span><strong id="sSelesai">0</strong></div>
+          <div class="stat"><span>Dibatalkan</span><strong id="sBatal">0</strong></div>
+        </div>
+
+        <div class="grid">
+          <section class="card" aria-labelledby="occTitle">
+            <h2 id="occTitle">Tingkat okupansi hari ini</h2>
+            <div class="score"><span id="occPercent">0</span><small>%</small></div>
+            <div class="bar" role="img" aria-label="Tingkat okupansi"><i id="occBar"></i></div>
+            <p class="muted" id="occDetail"></p>
+          </section>
+
+          <section class="card" aria-labelledby="topTitle">
+            <h2 id="topTitle">Ruangan paling sering dipakai</h2>
+            <p class="muted" style="margin-top:-8px">7 hari terakhir, tanpa booking dibatalkan.</p>
+            <ul class="rank" id="rank"></ul>
+          </section>
+        </div>
+
+        <section class="card stack-top" aria-labelledby="todayTitle">
+          <h2 id="todayTitle">Booking hari ini</h2>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Jam</th><th>Ruangan</th><th>Mahasiswa</th><th>NIM</th><th>Status</th></tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api-client.js"></script>
+  <script src="../../js/auth-service.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/layout.js"></script>
+  <script src="../../js/dashboard-admin.js"></script>
+</body>
+</html>

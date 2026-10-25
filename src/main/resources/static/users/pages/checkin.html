@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check-in | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Check-in</h1>
+        <p class="sub">Check-in dibuka 10 menit sebelum jadwal dan ditutup 10 menit sesudahnya. Lewat dari itu, booking dibatalkan otomatis dan trust score berkurang 15.</p>
+
+        <section class="card" aria-labelledby="todayTitle">
+          <h2 id="todayTitle">Booking hari ini</h2>
+          <ul class="list" id="list"></ul>
+          <p class="notice" id="notice" role="status"></p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api-client.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/checkin.js"></script>
+</body>
+</html>

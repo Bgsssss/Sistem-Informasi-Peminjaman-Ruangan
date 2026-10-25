@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <div class="head-row">
+          <div>
+            <h1 id="greeting">Dashboard</h1>
+            <p class="sub">Ringkasan booking dan trust score kamu.</p>
+          </div>
+          <a class="btn" href="booking.html">Booking ruangan</a>
+        </div>
+
+        <p class="notice err" id="limitNote" role="status"></p>
+
+        <div class="grid">
+          <section class="card" aria-labelledby="scoreTitle">
+            <h2 id="scoreTitle">Trust score</h2>
+            <div class="score"><span id="score">-</span><small> / <span id="scoreMax">100</span></small></div>
+            <div class="bar" role="img" aria-label="Trust score"><i id="scoreBar"></i></div>
+            <p class="muted" id="scoreLabel"></p>
+          </section>
+
+          <section class="card" aria-labelledby="activeTitle">
+            <h2 id="activeTitle">Booking aktif</h2>
+            <ul class="list" id="bookingList"></ul>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api-client.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/dashboard-mahasiswa.js"></script>
+</body>
+</html>

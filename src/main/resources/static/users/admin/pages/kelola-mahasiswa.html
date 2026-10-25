@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kelola data mahasiswa | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <div class="head-row">
+          <div>
+            <h1>Kelola data mahasiswa</h1>
+            <p class="sub">Akun mahasiswa dibuat oleh admin. Tidak ada registrasi mandiri.</p>
+          </div>
+          <button type="button" class="btn" id="addBtn">Tambah mahasiswa</button>
+        </div>
+
+        <section class="card" id="formCard" hidden aria-labelledby="formTitle">
+          <h2 id="formTitle">Tambah mahasiswa</h2>
+          <form id="studentForm" novalidate>
+            <div class="form-grid">
+              <label class="ctl">NIM
+                <input type="text" id="fNim" inputmode="numeric" required>
+                <small class="hint" id="nimHint">8-15 digit angka. Tidak bisa diubah setelah dibuat.</small>
+              </label>
+              <label class="ctl">Nama
+                <input type="text" id="fName" required>
+              </label>
+              <label class="ctl">Fakultas
+                <input type="text" id="fFaculty" required>
+              </label>
+              <label class="ctl">Email
+                <input type="email" id="fEmail" required>
+                <small class="hint">Dipakai mahasiswa untuk login.</small>
+              </label>
+              <label class="ctl" id="pwWrap">Password awal
+                <input type="text" id="fPassword" autocomplete="off">
+                <small class="hint">Minimal 6 karakter. Mahasiswa bisa menggantinya sendiri setelah login.</small>
+              </label>
+            </div>
+            <p class="notice" id="formNotice" role="alert"></p>
+            <div class="actions">
+              <button type="submit" class="btn">Simpan</button>
+              <button type="button" class="btn alt" id="cancelBtn">Batal</button>
+            </div>
+          </form>
+        </section>
+
+        <div class="toolbar stack-top">
+          <div class="tabs" id="tabs">
+            <button type="button" class="tab" data-f="semua" aria-pressed="true">Semua</button>
+            <button type="button" class="tab" data-f="aktif" aria-pressed="false">Aktif</button>
+            <button type="button" class="tab" data-f="nonaktif" aria-pressed="false">Nonaktif</button>
+          </div>
+          <label class="ctl search">
+            <input type="search" id="search" placeholder="Cari nama atau NIM" aria-label="Cari nama atau NIM">
+          </label>
+        </div>
+
+        <section class="card">
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr><th>Mahasiswa</th><th>NIM</th><th>Fakultas</th><th>Trust score</th><th>Booking aktif</th><th>Status</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <p class="notice" id="notice" role="status"></p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api-client.js"></script>
+  <script src="../../js/auth-service.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/layout.js"></script>
+  <script src="../../js/kelola-mahasiswa.js"></script>
+</body>
+</html>

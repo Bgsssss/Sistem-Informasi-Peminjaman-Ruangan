@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riwayat booking | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Riwayat booking</h1>
+        <p class="sub">Catatan lengkap semua booking kamu.</p>
+
+        <div class="stats">
+          <div class="stat"><span>Total</span><strong id="sTotal">0</strong></div>
+          <div class="stat"><span>Aktif</span><strong id="sAktif">0</strong></div>
+          <div class="stat"><span>Selesai</span><strong id="sSelesai">0</strong></div>
+          <div class="stat"><span>Dibatalkan</span><strong id="sBatal">0</strong></div>
+        </div>
+
+        <div class="toolbar">
+          <div class="tabs" id="tabs">
+            <button type="button" class="tab" data-f="semua" aria-pressed="true">Semua</button>
+            <button type="button" class="tab" data-f="aktif" aria-pressed="false">Aktif</button>
+            <button type="button" class="tab" data-f="selesai" aria-pressed="false">Selesai</button>
+            <button type="button" class="tab" data-f="dibatalkan" aria-pressed="false">Dibatalkan</button>
+          </div>
+          <button type="button" class="btn alt" id="csvBtn">Unduh CSV</button>
+        </div>
+
+        <section class="card">
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr><th>ID</th><th>Ruangan</th><th>Tanggal</th><th>Waktu</th><th>Status</th><th>Keterangan</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <p class="notice" id="notice" role="status"></p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api-client.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/riwayat.js"></script>
+</body>
+</html>

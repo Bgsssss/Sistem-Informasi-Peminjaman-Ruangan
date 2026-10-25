@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pengaturan sistem | Peminjaman Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="main">
+      <header id="topbar"></header>
+      <main id="content">
+        <h1>Pengaturan sistem</h1>
+        <p class="sub">Parameter yang sedang berlaku. Halaman ini hanya menampilkan nilai.</p>
+
+        <p class="callout"><strong>Nilai tidak bisa diubah dari sini.</strong> Parameter di-hardcode di konfigurasi server (SRS bagian 2.5), dan pengaturan lewat UI admin masuk daftar pengembangan berikutnya (Appendix C). Untuk mengubah nilai, hubungi tim backend. Kolom rujukan menunjuk ke nomor requirement di SRS.</p>
+
+        <div id="groups"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api-client.js"></script>
+  <script src="../../js/auth-service.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/layout.js"></script>
+  <script src="../../js/pengaturan.js"></script>
+</body>
+</html>
