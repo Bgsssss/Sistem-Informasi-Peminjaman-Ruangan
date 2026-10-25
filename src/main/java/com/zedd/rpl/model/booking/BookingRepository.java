@@ -135,8 +135,8 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
              CAST(COALESCE(SUM(b.status IN ('ATTENDED','COMPLETED')), 0) AS SIGNED)                    AS totalAttended,
              CAST(COALESCE(SUM(b.status = 'CANCELLED_BY_SYSTEM'), 0) AS SIGNED)                          AS totalNoShows,
              CAST(COALESCE(SUM(b.status IN ('CANCELLED_BY_USER','CANCELLED_BY_ADMIN')), 0) AS SIGNED)    AS totalOtherCancellations
-      FROM room r
-      LEFT JOIN booking b ON b.room_id = r.id AND b.booking_date BETWEEN :from AND :to
+      FROM rooms r
+      LEFT JOIN bookings b ON b.room_id = r.id AND b.booking_date BETWEEN :from AND :to
       GROUP BY r.id, r.name, r.type
       ORDER BY totalBookings DESC, r.name ASC
       """, nativeQuery = true)

@@ -173,7 +173,7 @@ public class BookingService {
     }
     if (now.isBefore(booking.startDateTime())) {
       throw new BusinessException(ErrorCode.CHECK_IN_TOO_EARLY,
-          "Check-in opens at " + booking.getStartTime());
+          "Check-in opens at " + booking.getStartTime().minusMinutes(props.getCheckInToleranceMinutes()));
     }
     if (now.isAfter(policy.checkInDeadline(booking))) {
       throw new BusinessException(ErrorCode.CHECK_IN_WINDOW_CLOSED);
@@ -204,7 +204,7 @@ public class BookingService {
         .orElseThrow(() -> new BusinessException(ErrorCode.BOOKING_NOT_FOUND));
     if (booking.getStatus() != BookingStatus.ACTIVE) {
       throw new BusinessException(ErrorCode.INVALID_BOOKING_STATUS,
-          "Only bookings with status ACTIVE can be cancelled by an admin");
+          booking.getStatus(),"cancelled by an admin");
     }
     User admin = userRepository.getReferenceById(adminId);
     String reason = req.reason().trim();

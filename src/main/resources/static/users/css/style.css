@@ -1,0 +1,107 @@
+:root {
+  --bg: #000;
+  --panel: rgba(255, 255, 255, 0.04);
+  --line: rgba(255, 255, 255, 0.14);
+  --text: #f2f4f8;
+  --muted: #8d939e;
+  --accent: #5ee7ff;
+  --font: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+/* Sisi kanan: form */
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+form { width: 100%; max-width: 360px; }
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.lead { margin: 0 0 32px; color: var(--muted); font-weight: 300; }
+
+.field { margin-bottom: 20px; }
+.field label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 0.875rem; }
+
+input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  transition: border-color 0.15s;
+}
+input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
+
+.pass { position: relative; }
+.pass input { padding-right: 104px; }
+
+.ghost {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  height: 36px;
+  padding: 0 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+.ghost:hover { color: var(--text); }
+.ghost:focus-visible { outline: 2px solid var(--accent); }
+
+.error { min-height: 1.5rem; margin: 0 0 12px; color: #ff8a95; font-size: 0.875rem; }
+
+.primary {
+  width: 100%;
+  height: 48px;
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  color: #000;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+.primary:hover { filter: brightness(1.1); }
+.primary:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.primary:disabled { opacity: 0.6; cursor: wait; }
+
+.demo { margin: 24px 0 0; color: var(--muted); font-size: 0.8125rem; }
+.demo code { color: var(--text); }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: 1fr; }
+  .panel { align-items: flex-start; padding-top: 40px; }
+}

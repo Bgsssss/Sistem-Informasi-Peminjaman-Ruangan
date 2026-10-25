@@ -23,7 +23,7 @@ public class BookingPolicy {
   /** Check-in is open from the start time until the tolerance deadline. */
   public boolean canCheckIn(Booking b, LocalDateTime now) {
     return b.getStatus() == BookingStatus.ACTIVE
-        && !now.isBefore(b.startDateTime())
+        && !now.isBefore((b.startDateTime().minusMinutes(props.getCheckInToleranceMinutes())))
         && !now.isAfter(checkInDeadline(b));
   }
 
