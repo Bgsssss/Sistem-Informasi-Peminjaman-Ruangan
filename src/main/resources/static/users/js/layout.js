@@ -20,7 +20,13 @@ const MENUS = {
 
 function mountShell(session, activeKey) {
   const nav = document.getElementById('sidebar');
-  nav.innerHTML = '<div class="brand">Peminjaman Ruangan</div><nav></nav>';
+  nav.innerHTML =
+    '<div class="sidebar-head">' +
+      '<div class="brand">Peminjaman Ruangan</div>' +
+      '<button type="button" class="burger" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">' +
+        '<span></span><span></span><span></span>' +
+      '</button>' +
+    '</div><nav id="menu"></nav>';
   const list = nav.querySelector('nav');
   MENUS[session.role].forEach(item => {
     const a = document.createElement('a');
@@ -30,9 +36,15 @@ function mountShell(session, activeKey) {
     list.appendChild(a);
   });
 
+  // Burger menu (tampil di HP)
+  const burger = nav.querySelector('.burger');
+  const setOpen = open => {
+    nav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu');
+  };
+  burger.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
   const bar = document.getElementById('topbar');
-  bar.innerHTML = '<div class="who"><strong></strong><span></span></div><button type="button" class="logout">Keluar</button>';
-  bar.querySelector('strong').textContent = session.name;
-  bar.querySelector('span').textContent = session.role === 'admin' ? 'Admin' : 'NIM ' + session.nim;
-  bar.querySelector('.logout').addEventListener('click', () => API.logout());
 }
