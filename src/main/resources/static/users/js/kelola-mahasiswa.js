@@ -148,7 +148,7 @@ function save(e) {
 }
 
 // ---- Aktif/nonaktif, reset password, hapus ----
-function toggle(s) {
+async function toggle(s) {
   if (!s.active) {
     API.setStudentActive(s.nim, true).then(() => {
       say(s.name + ' diaktifkan kembali dan bisa login.', 'ok');
@@ -159,7 +159,7 @@ function toggle(s) {
   const msg = s.activeBookings > 0
     ? s.name + ' punya ' + s.activeBookings + ' booking aktif. Booking itu TIDAK dibatalkan otomatis; tindak lanjuti manual lewat Kelola Booking.\n\nNonaktifkan akun? Mahasiswa tidak akan bisa login.'
     : 'Nonaktifkan akun ' + s.name + '? Mahasiswa tidak akan bisa login.';
-  if (!confirm(msg)) return;
+  if (!(await Dialog.confirm({ title: 'Nonaktifkan mahasiswa?', message: msg, confirmText: 'Nonaktifkan', danger: true }))) return;   // ← 2) ganti baris confirm
 
   API.setStudentActive(s.nim, false).then(res => {
     say(s.name + ' dinonaktifkan.' + (res.affected ? ' ' + res.affected + ' booking aktif perlu ditindaklanjuti lewat Kelola Booking.' : ''), 'ok');
@@ -167,15 +167,15 @@ function toggle(s) {
   });
 }
 
-function reset(s) {
-  if (!confirm('Reset password ' + s.name + '? Password lama tidak berlaku lagi.')) return;
+async function reset(s) {
+  if (!(await Dialog.confirm({ title: 'Reset password?', message: 'Reset password ' + s.name + '? Password lama tidak berlaku lagi.', confirmText: 'Reset password' }))) return;
   API.resetPassword(s.nim).then(res => {
     say('Password sementara untuk ' + s.name + ': ' + res.password + '. Catat sekarang, password ini tidak ditampilkan lagi. Mahasiswa bisa menggantinya di halaman Profil setelah login.', 'ok');
   }).catch(err => say(err.message, 'err'));
 }
 
-function remove(s) {
-  if (!confirm('Hapus data ' + s.name + ' secara permanen? Tindakan ini tidak bisa dibatalkan.')) return;
+async function remove(s) {
+  if (!(await Dialog.confirm({ title: 'Hapus mahasiswa?', message: 'Hapus data ' + s.name + ' secara permanen? Tindakan ini tidak bisa dibatalkan.', confirmText: 'Hapus', danger: true }))) return;
   API.deleteStudent(s.nim)
     .then(() => { say(s.name + ' dihapus.', 'ok'); return load(); })
     .catch(err => say(err.message, 'err'));
