@@ -128,7 +128,7 @@ public class BookingService {
   /**
    * Self-cancellation (FR-14). At least N hours before the schedule: no penalty.
    * Closer than that: late cancellation, the score drops. After the schedule starts the booking
-   * cannot be cancelled, so students cannot trade the no-show penalty for the smaller cancel penalty.
+   * cannot be canceled, so students cannot trade the no-show penalty for the smaller cancel penalty.
    */
   @Transactional
   public CancelResponse cancel(Long studentId, Long bookingId) {
