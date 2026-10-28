@@ -1,0 +1,14 @@
+target/
+.git/
+.gitignore
+.idea/
+.vscode/
+*.iml
+HELP.md
+.env
+docker-compose.yml
+nginx/
+db/
+*.log
+keys/
+src/main/resources/keys/

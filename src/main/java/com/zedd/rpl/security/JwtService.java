@@ -25,8 +25,8 @@ public class JwtService {
 
   // it will be loaded in a memory
   public JwtService(PrivateKey privateKey, PublicKey publicKey) throws Exception {
-    this.privateKey = KeyUtils.loadPrivateKey("keys/local-only/private_key.pem");
-    this.publicKey = KeyUtils.loadPublicKey("keys/local-only/public_key.pem");
+    this.privateKey = privateKey;
+    this.publicKey =  publicKey;
   }
 
   public String generateAccessToken(final String username){

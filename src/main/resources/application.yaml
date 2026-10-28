@@ -31,3 +31,5 @@ app:
     jwt:
       access-token-expiration: 86400000 #24 hours for local testing, I recomment 15 minutes for prod
       refresh-token-expiration: 604800000 # 7 days
+      private-key-path: file:./keys/private_key.pem
+      public-key-path: file:./keys/public_key.pem

@@ -1,5 +1,7 @@
 package com.zedd.rpl.security;
 
+import org.springframework.core.io.Resource;
+
 import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
@@ -13,33 +15,26 @@ public class KeyUtils {
   private KeyUtils() {
   }
 
-  public static PrivateKey loadPrivateKey(final String pemPath) throws Exception {
-    final String key = readKeyFromResource(pemPath)
-        .replace("-----BEGIN PRIVATE KEY-----","")
+  public static PrivateKey loadPrivateKey(final Resource resource) throws Exception {
+    final String key = read(resource)
+        .replace("-----BEGIN PRIVATE KEY-----", "")
         .replace("-----END PRIVATE KEY-----", "")
         .replaceAll("\\s+", "");
-
-    final byte[] decode = Base64.getDecoder().decode(key);
-    final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(decode);
-    return KeyFactory.getInstance("RSA").generatePrivate(keySpec);
+    final byte[] decoded = Base64.getDecoder().decode(key);
+    return KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
   }
 
-  public static PublicKey loadPublicKey(final String pemPath) throws Exception {
-    final String key = readKeyFromResource(pemPath)
+  public static PublicKey loadPublicKey(final Resource resource) throws Exception {
+    final String key = read(resource)
         .replace("-----BEGIN PUBLIC KEY-----", "")
         .replace("-----END PUBLIC KEY-----", "")
-        .replaceAll("\\s", "");
-
+        .replaceAll("\\s+", "");
     final byte[] decoded = Base64.getDecoder().decode(key);
-    final X509EncodedKeySpec keySpec = new X509EncodedKeySpec(decoded);
-    return KeyFactory.getInstance("RSA").generatePublic(keySpec);
+    return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(decoded));
   }
 
-  private static String readKeyFromResource(final String path) throws Exception {
-    try (final InputStream is = KeyUtils.class.getClassLoader().getResourceAsStream(path)) {
-      if (is == null) {
-        throw new IllegalArgumentException("Key not found: " + path);
-      }
+  private static String read(final Resource resource) throws Exception {
+    try (InputStream is = resource.getInputStream()) {
       return new String(is.readAllBytes());
     }
   }

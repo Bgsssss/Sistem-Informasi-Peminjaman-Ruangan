@@ -1,8 +1,10 @@
 package com.zedd.rpl.config;
 
 import com.zedd.rpl.security.KeyUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -11,12 +13,16 @@ import java.security.PublicKey;
 public class RsaKeyConfig {
 
     @Bean
-    public PrivateKey privateKey() throws Exception {
-        return KeyUtils.loadPrivateKey("keys/local-only/private_key.pem");
+    public PrivateKey privateKey(
+        @Value("${app.security.jwt.private-key-path:file:./keys/private_key.pem}")
+        final Resource resource
+    ) throws Exception {
+        return KeyUtils.loadPrivateKey(resource);
     }
 
     @Bean
-    public PublicKey publicKey() throws Exception {
-        return KeyUtils.loadPublicKey("keys/local-only/public_key.pem");
+    public PublicKey publicKey(
+        @Value("${app.security.jwt.public-key-path:file:./keys/public_key.pem}") final Resource resource) throws Exception {
+        return KeyUtils.loadPublicKey(resource);
     }
 }
