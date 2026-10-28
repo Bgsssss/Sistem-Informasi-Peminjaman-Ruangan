@@ -14,6 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
   boolean existsByRole(Role role);
 
   @EntityGraph(attributePaths = "student")
+  Optional<User> findByStudentStudentNumber(String nim);
+
+  @EntityGraph(attributePaths = "student")
   Optional<User> findByUsername(String username);
 
   Optional<User> findByStudentId(Long studentId);

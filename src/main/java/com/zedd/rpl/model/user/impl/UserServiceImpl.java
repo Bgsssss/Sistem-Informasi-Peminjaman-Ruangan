@@ -43,8 +43,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDetails loadUserByUsername(final String userEmail) throws UsernameNotFoundException {
-    return this.userRepository.findByUsername(userEmail)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found with userEmail : " + userEmail));
+  public UserDetails loadUserByUsername(final String identifier) throws UsernameNotFoundException {
+    return this.userRepository.findByUsername(identifier)
+        .or(() -> this.userRepository.findByStudentStudentNumber(identifier))
+        .orElseThrow(() -> new UsernameNotFoundException("User not found : " + identifier));
   }
 }

@@ -120,7 +120,7 @@ h1 { margin: 0 0 4px; font-size: 1.75rem; font-weight: 600; letter-spacing: -0.0
 .head-row .sub { margin: 0; }
 
 @media (max-width: 860px) {
-  ..app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
+  .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
   #sidebar { padding: 16px; border-right: 0; border-bottom: 1px solid var(--line); }
   .burger { display: flex; }                                   /* baru */
   .brand { padding-bottom: 0; line-height: 40px; }             /* ganti: sebelumnya padding-bottom: 12px */
