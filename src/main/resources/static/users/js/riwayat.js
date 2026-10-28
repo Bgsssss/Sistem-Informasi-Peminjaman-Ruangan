@@ -95,7 +95,7 @@ function render() {
   });
 }
 
-function cancel(b) {
+async function cancel(b) {
   const late = API.isLateCancel(b);
   const msg = 'Batalkan booking ' + b.room + ' pada ' + formatDate(b.date) + ', ' + b.start + '-' + b.end + '?' +
     (late ? '\n\nKurang dari ' + CONFIG.lateCancelHours + ' jam sebelum jadwal: trust score kamu berkurang ' + Math.abs(CONFIG.penalty.lateCancel) + ' poin.' : '');

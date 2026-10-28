@@ -24,7 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
   public AuthenticationResponse login(AuthenticationRequest request) {
     final Authentication auth = this.authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
-            request.getEmail(),
+            request.getIdentifier().trim(),
             request.getPassword()
         )
     );

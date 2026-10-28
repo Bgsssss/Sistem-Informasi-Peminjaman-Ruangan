@@ -46,5 +46,11 @@ function mountShell(session, activeKey) {
   burger.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
 
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
   const bar = document.getElementById('topbar');
+    bar.innerHTML = '<div class="who"><strong></strong><span></span></div><button type="button" class="logout">Keluar</button>';
+    bar.querySelector('strong').textContent = session.name;
+    bar.querySelector('span').textContent = session.role === 'admin' ? 'Admin' : 'NIM ' + session.nim;
+    bar.querySelector('.logout').addEventListener('click', () => API.logout());
 }

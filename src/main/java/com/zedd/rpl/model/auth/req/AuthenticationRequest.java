@@ -1,6 +1,6 @@
 package com.zedd.rpl.model.auth.req;
 
-import jakarta.validation.constraints.Email;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -12,8 +12,8 @@ import lombok.*;
 public class AuthenticationRequest {
 
     @NotBlank
-    @Email
-    private String email;
+    @JsonAlias("email")
+    private String identifier;
 
     @NotBlank
     private String password;
