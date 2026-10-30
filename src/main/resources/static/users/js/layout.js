@@ -1,20 +1,20 @@
 // Mengisi sidebar dan header. Dipakai semua halaman setelah login.
 const MENUS = {
   mahasiswa: [
-    { key: 'dashboard', label: 'Dashboard', href: 'dashboard-mahasiswa.html' },
-    { key: 'booking', label: 'Booking ruangan', href: 'booking.html' },
-    { key: 'riwayat', label: 'Riwayat booking', href: 'riwayat.html' },
-    { key: 'checkin', label: 'Check-in', href: 'checkin.html' },
-    { key: 'profil', label: 'Profil', href: 'profil.html' }
+    { key: 'dashboard', label: 'Dashboard', href: '/dashboard' },
+    { key: 'booking', label: 'Booking ruangan', href: '/booking' },
+    { key: 'riwayat', label: 'Riwayat booking', href: '/history' },
+    { key: 'checkin', label: 'Check-in', href: '/check-in' },
+    { key: 'profil', label: 'Profil', href: '/profile' }
   ],
   admin: [
-    { key: 'dashboard', label: 'Dashboard', href: 'dashboard.html' },
-    { key: 'ruangan', label: 'Kelola ruangan', href: 'kelola-ruangan.html' },
-    { key: 'mahasiswa', label: 'Kelola mahasiswa', href: 'kelola-mahasiswa.html' },
-    { key: 'booking', label: 'Kelola booking', href: 'kelola-booking.html' },
-    { key: 'pelanggaran', label: 'Log pelanggaran', href: 'log-pelanggaran.html' },
-    { key: 'laporan', label: 'Laporan', href: 'laporan.html' },
-    { key: 'pengaturan', label: 'Pengaturan sistem', href: 'pengaturan.html' }
+    { key: 'dashboard', label: 'Dashboard', href: '/admin/dashboard' },
+    { key: 'ruangan', label: 'Kelola ruangan', href: '/admin/rooms' },
+    { key: 'mahasiswa', label: 'Kelola mahasiswa', href: '/admin/students' },
+    { key: 'booking', label: 'Kelola booking', href: '/admin/bookings' },
+    { key: 'pelanggaran', label: 'Log pelanggaran', href: '/admin/violations' },
+    { key: 'laporan', label: 'Laporan', href: '/admin/reports' },
+    { key: 'pengaturan', label: 'Pengaturan sistem', href: '/admin/settings' }
   ]
 };
 

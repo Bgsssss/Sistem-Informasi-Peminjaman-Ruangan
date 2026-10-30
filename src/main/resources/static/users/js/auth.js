@@ -1,5 +1,5 @@
 // Login ke backend (POST /api/auth/login). Mahasiswa: email. Admin: username (lihat catatan @Email di backend).
-const HOME = { mahasiswa: 'pages/dashboard-mahasiswa.html', admin: 'admin/pages/dashboard.html' };
+const HOME = { mahasiswa: '/dashboard', admin: '/admin/dashboard' };
 
 (function redirectIfLoggedIn() {
   try {
