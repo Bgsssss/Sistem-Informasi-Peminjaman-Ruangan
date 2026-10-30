@@ -11,6 +11,7 @@ import com.zedd.rpl.model.trustcore.TrustScoreHistoryRepository;
 import com.zedd.rpl.model.trustcore.TrustScoreMapper;
 import com.zedd.rpl.model.trustcore.req.ScoreAdjustmentRequest;
 import com.zedd.rpl.model.trustcore.res.ScoreAdjustmentResponse;
+import com.zedd.rpl.model.trustcore.res.ScoreHistoryResponse;
 import com.zedd.rpl.model.trustcore.res.ViolationLogResponse;
 import com.zedd.rpl.model.user.User;
 import com.zedd.rpl.model.user.UserRepository;
@@ -74,6 +75,16 @@ public class TrustScoreService {
       Collections.reverse(result);
     }
     return result;
+  }
+
+  @Transactional(readOnly = true)
+  public List<ScoreHistoryResponse> studentHistory(Long studentId) {
+    if (!studentRepository.existsById(studentId)) {
+      throw new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
+    }
+    return historyRepository.findByStudentIdOrderByCreatedAtDescIdDesc(studentId).stream()
+        .map(mapper::toHistory)
+        .toList();
   }
 }
 

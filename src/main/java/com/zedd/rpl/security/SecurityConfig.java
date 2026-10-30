@@ -32,7 +32,8 @@ public class SecurityConfig {
       "/swagger-ui.html",
       "/",
       "/index.html",
-      "/users/**"
+      "/users/**",
+      "/error"
   };
 
   private final JwtFilter jwtFilter;

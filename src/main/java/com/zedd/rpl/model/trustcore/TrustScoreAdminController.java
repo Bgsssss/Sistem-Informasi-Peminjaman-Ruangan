@@ -4,6 +4,7 @@ import com.zedd.rpl.common.ApiResponse;
 import com.zedd.rpl.model.trustcore.impl.TrustScoreService;
 import com.zedd.rpl.model.trustcore.req.ScoreAdjustmentRequest;
 import com.zedd.rpl.model.trustcore.res.ScoreAdjustmentResponse;
+import com.zedd.rpl.model.trustcore.res.ScoreHistoryResponse;
 import com.zedd.rpl.model.trustcore.res.ViolationLogResponse;
 import com.zedd.rpl.model.user.User;
 import jakarta.validation.Valid;
@@ -53,5 +54,14 @@ public class TrustScoreAdminController {
   ) {
     return ApiResponse.ok("Trust score adjusted",
         trustScoreService.adjustManually(admin.getId(), studentId, request));
+  }
+
+  /** Riwayat skor satu mahasiswa. */
+  @GetMapping(
+      path = "/students/{studentId}/score-history",
+      produces = MediaType.APPLICATION_JSON_VALUE
+  )
+  public ApiResponse<List<ScoreHistoryResponse>> scoreHistory(@PathVariable Long studentId) {
+    return ApiResponse.ok(trustScoreService.studentHistory(studentId));
   }
 }
