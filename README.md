@@ -2,6 +2,55 @@
 
 Aplikasi web untuk mendukung proses peminjaman ruangan. Backend dibuat dengan Java dan Spring Boot, menggunakan MySQL sebagai database. Frontend statis (HTML, CSS, dan JavaScript) disertakan dalam aplikasi, sedangkan Nginx bertindak sebagai reverse proxy.
 
+## Fitur
+
+### Mahasiswa/pengguna
+
+- Melihat dashboard mahasiswa.
+- Menelusuri informasi ruangan dan melihat detail ruangan.
+- Mengajukan peminjaman ruangan melalui halaman booking.
+- Melakukan check-in untuk peminjaman.
+- Melihat riwayat peminjaman.
+- Melihat dan mengelola profil.
+
+### Admin
+
+- Melihat ringkasan pada dashboard admin.
+- Mengelola data ruangan.
+- Mengelola data mahasiswa.
+- Mengelola booking/peminjaman.
+- Melihat laporan.
+- Melihat log pelanggaran.
+- Mengakses halaman pengaturan.
+
+### Sistem
+
+- Autentikasi dan keamanan akses berbasis Spring Security dan JWT.
+- Validasi data menggunakan Spring Validation.
+- Penyimpanan data dengan MySQL dan Spring Data JPA.
+- Bootstrap akun admin pertama melalui konfigurasi environment jika admin belum tersedia.
+- Dokumentasi API melalui Springdoc OpenAPI.
+
+> Rincian alur dan aturan setiap fitur mengikuti implementasi aplikasi yang tersedia di repository.
+
+## Dokumentasi desain
+
+### Use case diagram
+
+![Use case diagram](docs/images/use-case.png)
+
+> **TODO:** Tambahkan gambar use case ke `docs/images/use-case.png` agar tampil di README.
+
+### Class diagram
+
+![Class diagram](docs/images/class-diagram.png)
+
+> **TODO:** Tambahkan gambar class diagram ke `docs/images/class-diagram.png` agar tampil di README.
+
+### Desain Figma
+
+[🔗 Buka desain di Figma](https://www.figma.com/) — **TODO:** ganti tautan ini dengan URL file/prototype Figma proyek.
+
 ## Teknologi
 
 - Java 25 dan Spring Boot
@@ -99,6 +148,7 @@ Untuk membangun paket aplikasi tanpa Docker:
 - `Dockerfile` — proses build dan image aplikasi
 - `docker-compose.yml` — konfigurasi layanan aplikasi, database, dan Nginx
 - `.env-example` — contoh variabel lingkungan
+- `docs/images/` — tempat menyimpan gambar dokumentasi seperti diagram use case dan class diagram
 
 ## Keamanan
 
